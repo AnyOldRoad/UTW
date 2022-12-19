@@ -1,0 +1,5 @@
+baseURL = 'https://underthewrekin.net'
+languageCode = 'en'
+title = 'Under the Wrekin'
+
+theme = 'utw'

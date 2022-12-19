@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+<div class="row topstory">
+    <article class="col-lg-8 content">
+        {{ range (where .Site.Pages.ByPublishDate.Reverse "Section" "posts") }}
+        {{ range first 1 .Pages }}
+        <h2 class="pb-3">{{ .Title }}</h2>
+        {{ .Summary }}
+        <a class="btn btn-outline-danger float-end" href="{{ .Permalink }}">Read more</a>
+        {{ end }}
+        {{ end }}
+    </article>
+</div>
+
+
+<div class="row">
+    <div class="col text-center">
+        <h3>Older posts</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 content">
+        <ul class="list-unstyled headlines">
+
+            {{ range first 11 (where .Site.Pages.ByPublishDate.Reverse "Section" "posts") }}
+            {{ range after 1 .Pages }}
+            <li><a href="{{ .Permalink }}">{{ .Title }}</a><span>{{- .Date | time.Format (default "January 2, 2006"
+                    .Site.Params.date_format) -}}</span></li>
+            {{ end }}
+            {{ end }}
+
+        </ul>
+    </div>
+</div>
+
+{{ end }}

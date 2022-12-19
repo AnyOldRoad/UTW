@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<div class="postlist">
+    {{ range .Pages }}
+    <div class="row">
+        <div class="col-lg-8 content">
+            <article class="pb-5">
+                <h2>{{ .Title }}</h2>
+                <p>{{ .Summary }}</p>
+                <a class="btn btn-outline-danger float-end" href="{{ .Permalink }}">Read more</a>
+            </article>
+            <hr>
+        </div>
+    </div>
+    {{ end }}
+</div>
+
+{{ end }}

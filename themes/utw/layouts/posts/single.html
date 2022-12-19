@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="row">
+    <article class="col-lg-8 content single">
+
+        <h1>{{ .Title }}</h1>
+        <div class="pb-2">
+            {{ if not .Date.IsZero }}
+            Published
+
+            {{ if ( .Params.author )}}
+            by {{ .Params.author }}
+            {{ end }}
+
+            on
+            <time {{ printf `datetime="%s" ` (.Date.Format "2006-01-02T15:04:05Z07:00" ) | safeHTMLAttr }}>
+                {{- .Date | time.Format (default "January 2, 2006" .Site.Params.date_format) -}}
+            </time>
+            {{end}}
+
+            {{ if ( eq .ReadingTime 1) }}
+            - {{ .ReadingTime }} minute read
+            {{ else }}
+            - {{ .ReadingTime }} minutes read
+            {{ end }}
+        </div>
+        <br>
+        {{ if .Params.image }}
+        <figure>
+            <img src="{{ .Params.image }}" alt="{{ .Params.imagetext }}">
+            <figcaption>{{ .Params.imagetext }}</figcaption>
+        </figure>
+        {{ end }}
+        <br>
+        {{ .Content }}
+
+    </article>
+</div>
+{{ end }}
